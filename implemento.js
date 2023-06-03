@@ -1,244 +1,173 @@
 var Plataforma = /** @class */ (function () {
-    function Plataforma() {
+    function Plataforma(nombre, detalle) {
+        this.nombre = nombre;
+        this.detalle = detalle;
     }
     return Plataforma;
 }());
-def;
-__init__(self, nombre, detalle);
-self.nombre = nombre;
-self.detalle = detalle;
 var Canal = /** @class */ (function () {
-    function Canal() {
+    function Canal(nombre, detalle) {
+        this.nombre = nombre;
+        this.detalle = detalle;
     }
     return Canal;
 }());
-def;
-__init__(self, nombre, detalle);
-self.nombre = nombre;
-self.detalle = detalle;
 var Streamer = /** @class */ (function () {
-    function Streamer() {
+    function Streamer(nombre, detalle) {
+        this.nombre = nombre;
+        this.detalle = detalle;
     }
     return Streamer;
 }());
-def;
-__init__(self, nombre, detalle);
-self.nombre = nombre;
-self.detalle = detalle;
 var Stream = /** @class */ (function () {
-    function Stream() {
+    function Stream(nombre, detalle) {
+        this.nombre = nombre;
+        this.detalle = detalle;
     }
     return Stream;
 }());
-def;
-__init__(self, nombre, detalle);
-self.nombre = nombre;
-self.detalle = detalle;
-var Repositorio = /** @class */ (function () {
-    function Repositorio() {
+// Clase principal que contiene la lógica
+var StreamingService = /** @class */ (function () {
+    function StreamingService() {
+        this.plataformas = [];
+        this.canales = [];
+        this.streamers = [];
+        this.streams = [];
     }
-    return Repositorio;
+    // Métodos de visualización
+    StreamingService.prototype.mostrarListadoPlataformas = function () {
+        console.log("Listado de plataformas:");
+        this.plataformas.forEach(function (plataforma) {
+            console.log("".concat(plataforma.nombre, " - ").concat(plataforma.detalle));
+        });
+    };
+    StreamingService.prototype.mostrarDetallePlataforma = function (nombre) {
+        var plataforma = this.plataformas.find(function (plataforma) { return plataforma.nombre === nombre; });
+        if (plataforma) {
+            console.log("Detalle de la plataforma ".concat(plataforma.nombre, ":"));
+            console.log(plataforma.detalle);
+        }
+        else {
+            console.log("No se encontr\u00F3 la plataforma ".concat(nombre, "."));
+        }
+    };
+    StreamingService.prototype.mostrarListadoCanales = function () {
+        console.log("Listado de canales:");
+        this.canales.forEach(function (canal) {
+            console.log("".concat(canal.nombre, " - ").concat(canal.detalle));
+        });
+    };
+    StreamingService.prototype.mostrarDetalleCanal = function (nombre) {
+        var canal = this.canales.find(function (canal) { return canal.nombre === nombre; });
+        if (canal) {
+            console.log("Detalle del canal ".concat(canal.nombre, ":"));
+            console.log(canal.detalle);
+        }
+        else {
+            console.log("No se encontr\u00F3 el canal ".concat(nombre, "."));
+        }
+    };
+    StreamingService.prototype.mostrarListadoStreamers = function () {
+        console.log("Listado de streamers:");
+        this.streamers.forEach(function (streamer) {
+            console.log("".concat(streamer.nombre, " - ").concat(streamer.detalle));
+        });
+    };
+    StreamingService.prototype.mostrarDetalleStreamer = function (nombre) {
+        var streamer = this.streamers.find(function (streamer) { return streamer.nombre === nombre; });
+        if (streamer) {
+            console.log("Detalle del streamer ".concat(streamer.nombre, ":"));
+            console.log(streamer.detalle);
+        }
+        else {
+            console.log("No se encontr\u00F3 el streamer ".concat(nombre, "."));
+        }
+    };
+    StreamingService.prototype.mostrarListadoStreams = function () {
+        console.log("Listado de streams:");
+        this.streams.forEach(function (stream) {
+            console.log("".concat(stream.nombre, " - ").concat(stream.detalle));
+        });
+    };
+    StreamingService.prototype.mostrarDetalleStream = function (nombre) {
+        var stream = this.streams.find(function (stream) { return stream.nombre === nombre; });
+        if (stream) {
+            console.log("Detalle del stream ".concat(stream.nombre, ":"));
+            console.log(stream.detalle);
+        }
+        else {
+            console.log("No se encontr\u00F3 el stream ".concat(nombre, "."));
+        }
+    };
+    // Métodos de agregación
+    StreamingService.prototype.agregarPlataforma = function (nombre, detalle) {
+        var plataforma = new Plataforma(nombre, detalle);
+        this.plataformas.push(plataforma);
+        console.log("Se agreg\u00F3 la plataforma ".concat(plataforma.nombre, "."));
+    };
+    StreamingService.prototype.agregarCanal = function (nombre, detalle) {
+        var canal = new Canal(nombre, detalle);
+        this.canales.push(canal);
+        console.log("Se agreg\u00F3 el canal ".concat(canal.nombre, "."));
+    };
+    StreamingService.prototype.agregarStreamer = function (nombre, detalle) {
+        var streamer = new Streamer(nombre, detalle);
+        this.streamers.push(streamer);
+        console.log("Se agreg\u00F3 el streamer ".concat(streamer.nombre, "."));
+    };
+    StreamingService.prototype.agregarStream = function (nombre, detalle) {
+        var stream = new Stream(nombre, detalle);
+        this.streams.push(stream);
+        console.log("Se agreg\u00F3 el stream ".concat(stream.nombre, "."));
+    };
+    StreamingService.prototype.agregarCanalAStreamer = function (streamerNombre, canalNombre) {
+        var streamer = this.streamers.find(function (streamer) { return streamer.nombre === streamerNombre; });
+        var canal = this.canales.find(function (canal) { return canal.nombre === canalNombre; });
+        if (streamer && canal) {
+            // Agregar canal al streamer
+            console.log("Se agreg\u00F3 el canal ".concat(canal.nombre, " al streamer ").concat(streamer.nombre, "."));
+        }
+        else {
+            console.log("No se encontr\u00F3 el streamer ".concat(streamerNombre, " o el canal ").concat(canalNombre, "."));
+        }
+    };
+    StreamingService.prototype.agregarStreamAStreamer = function (streamerNombre, streamNombre) {
+        var streamer = this.streamers.find(function (streamer) { return streamer.nombre === streamerNombre; });
+        var stream = this.streams.find(function (stream) { return stream.nombre === streamNombre; });
+        if (streamer && stream) {
+            // Agregar stream al streamer
+            console.log("Se agreg\u00F3 el stream ".concat(stream.nombre, " al streamer ").concat(streamer.nombre, "."));
+        }
+        else {
+            console.log("No se encontr\u00F3 el streamer ".concat(streamerNombre, " o el stream ").concat(streamNombre, "."));
+        }
+    };
+    return StreamingService;
 }());
-def;
-__init__(self);
-self.plataformas = [];
-self.canales = [];
-self.streamers = [];
-self.streams = [];
-def;
-mostrar_listado_plataformas(self);
-for (plataforma in self.plataformas)
-    : print(f, "Nombre: {plataforma.nombre}");
-print(f, "Detalle: {plataforma.detalle}");
-print();
-def;
-mostrar_detalle_plataforma(self, nombre_plataforma);
-for (plataforma in self.plataformas)
-    : if (plataforma.nombre == nombre_plataforma)
-        : print(f, "Nombre: {plataforma.nombre}");
-print(f, "Detalle: {plataforma.detalle}");
-print();
-return;
-print(f, "No se encontró la plataforma con el nombre: {nombre_plataforma}");
-def;
-mostrar_listado_canales(self);
-for (canal in self.canales)
-    : print(f, "Nombre: {canal.nombre}");
-print(f, "Detalle: {canal.detalle}");
-print();
-def;
-mostrar_detalle_canal(self, nombre_canal);
-for (canal in self.canales)
-    : if (canal.nombre == nombre_canal)
-        : print(f, "Nombre: {canal.nombre}");
-print(f, "Detalle: {canal.detalle}");
-print();
-return;
-print(f, "No se encontró el canal con el nombre: {nombre_canal}");
-def;
-mostrar_listado_streamers(self);
-for (streamer in self.streamers)
-    : print(f, "Nombre: {streamer.nombre}");
-print(f, "Detalle: {streamer.detalle}");
-print();
-def;
-mostrar_detalle_streamer(self, nombre_streamer);
-for (streamer in self.streamers)
-    : if (streamer.nombre == nombre_streamer)
-        : print(f, "Nombre: {streamer.nombre}");
-print(f, "Detalle: {streamer.detalle}");
-print();
-return;
-print(f, "No se encontró el streamer con el nombre: {nombre_streamer}");
-def;
-mostrar_listado_streams(self);
-for (stream in self.streams)
-    : print(f, "Nombre: {stream.nombre}");
-print(f, "Detalle: {stream.detalle}");
-print();
-def;
-mostrar_detalle_stream(self, nombre_stream);
-for (stream in self.streams)
-    : if (stream.nombre == nombre_stream)
-        : print(f, "Nombre: {stream.nombre}");
-print(f, "Detalle: {stream.detalle}");
-print();
-return;
-print(f, "No se encontró el stream con el nombre: {nombre_stream}");
-def;
-agregar_plataforma(self, plataforma);
-self.plataformas.append(plataforma);
-def;
-agregar_canal(self, canal);
-self.canales.append(canal);
-def;
-agregar_streamer(self, streamer);
-self.streamers.append(streamer);
-def;
-agregar_stream(self, stream);
-self.streams.append(stream);
-def;
-agregar_canal_a_streamer(self, nombre_canal, nombre_streamer);
-canal_encontrado = None;
-for (canal in self.canales)
-    : if (canal.nombre == nombre_canal)
-        : canal_encontrado = canal;
-break;
-streamer_encontrado = None;
-for (streamer in self.streamers)
-    : if (streamer.nombre == nombre_streamer)
-        : streamer_encontrado = streamer;
-break;
-if (canal_encontrado)
-    and;
-streamer_encontrado: streamer_encontrado.canales.append(canal_encontrado);
-print(f, "Se agregó el canal {nombre_canal} al streamer {nombre_streamer}");
-print(f, "No se pudo agregar el canal {nombre_canal} al streamer {nombre_streamer}");
-def;
-agregar_stream_a_streamer(self, nombre_stream, nombre_streamer);
-stream_encontrado = None;
-for (stream in self.streams)
-    : if (stream.nombre == nombre_stream)
-        : stream_encontrado = stream;
-break;
-streamer_encontrado = None;
-for (streamer in self.streamers)
-    : if (streamer.nombre == nombre_streamer)
-        : streamer_encontrado = streamer;
-break;
-if (stream_encontrado)
-    and;
-streamer_encontrado: streamer_encontrado.streams.append(stream_encontrado);
-print(f, "Se agregó el stream {nombre_stream} al streamer {nombre_streamer}");
-print(f, "No se pudo agregar el stream {nombre_stream} al streamer {nombre_streamer}");
-#;
-Ejemplo;
-de;
-uso;
-repositorio = Repositorio();
-#;
-Agregar;
-plataformas;
-repositorio.agregar_plataforma(Plataforma("Twitch", "Plataforma de streaming en vivo"));
-repositorio.agregar_plataforma(Plataforma("YouTube", "Plataforma de videos en streaming"));
-#;
-Agregar;
-canales;
-repositorio.agregar_canal(Canal("Canal 1", "Descripción del canal 1"));
-repositorio.agregar_canal(Canal("Canal 2", "Descripción del canal 2"));
-#;
-Agregar;
-streamers;
-repositorio.agregar_streamer(Streamer("Streamer 1", "Descripción del streamer 1"));
-repositorio.agregar_streamer(Streamer("Streamer 2", "Descripción del streamer 2"));
-#;
-Agregar;
-streams;
-repositorio.agregar_stream(Stream("Stream 1", "Descripción del stream 1"));
-repositorio.agregar_stream(Stream("Stream 2", "Descripción del stream 2"));
-#;
-Agregar;
-canal;
-a;
-un;
-streamer;
-repositorio.agregar_canal_a_streamer("Canal 1", "Streamer 1");
-#;
-Agregar;
-stream;
-a;
-un;
-streamer;
-repositorio.agregar_stream_a_streamer("Stream 2", "Streamer 2");
-#;
-Mostrar;
-listado;
-de;
-plataformas;
-repositorio.mostrar_listado_plataformas();
-#;
-Mostrar;
-detalle;
-de;
-una;
-plataforma;
-repositorio.mostrar_detalle_plataforma("Twitch");
-#;
-Mostrar;
-listado;
-de;
-canales;
-repositorio.mostrar_listado_canales();
-#;
-Mostrar;
-detalle;
-de;
-un;
-canal;
-repositorio.mostrar_detalle_canal("Canal 1");
-#;
-Mostrar;
-listado;
-de;
-streamers;
-repositorio.mostrar_listado_streamers();
-#;
-Mostrar;
-detalle;
-de;
-un;
-streamer;
-repositorio.mostrar_detalle_streamer("Streamer 1");
-#;
-Mostrar;
-listado;
-de;
-streams;
-repositorio.mostrar_listado_streams();
-#;
-Mostrar;
-detalle;
-de;
-un;
-stream;
-repositorio.mostrar_detalle_stream("Stream 2");
+// Uso de la clase StreamingService
+var streamingService = new StreamingService();
+// Agregar plataformas
+streamingService.agregarPlataforma("Twitch", "Plataforma de streaming en vivo");
+streamingService.agregarPlataforma("YouTube", "Plataforma de videos en línea");
+// Agregar canales
+streamingService.agregarCanal("Canal 1", "Canal de prueba 1");
+streamingService.agregarCanal("Canal 2", "Canal de prueba 2");
+// Agregar streamers
+streamingService.agregarStreamer("Streamer 1", "Streamer de prueba 1");
+streamingService.agregarStreamer("Streamer 2", "Streamer de prueba 2");
+// Agregar streams
+streamingService.agregarStream("Stream 1", "Stream de prueba 1");
+streamingService.agregarStream("Stream 2", "Stream de prueba 2");
+// Agregar canal a streamer
+streamingService.agregarCanalAStreamer("Streamer 1", "Canal 1");
+// Agregar stream a streamer
+streamingService.agregarStreamAStreamer("Streamer 2", "Stream 2");
+// Mostrar listados y detalles
+streamingService.mostrarListadoPlataformas();
+streamingService.mostrarDetallePlataforma("Twitch");
+streamingService.mostrarListadoCanales();
+streamingService.mostrarDetalleCanal("Canal 1");
+streamingService.mostrarListadoStreamers();
+streamingService.mostrarDetalleStreamer("Streamer 2");
+streamingService.mostrarListadoStreams();
+streamingService.mostrarDetalleStream("Stream 1");

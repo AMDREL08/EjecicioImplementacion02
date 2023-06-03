@@ -194,4 +194,4 @@ class Plataforma {
   streamingService.mostrarListadoStreams();
   streamingService.mostrarDetalleStream("Stream 1");
 
-  
+ 
