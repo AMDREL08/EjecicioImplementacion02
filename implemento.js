@@ -19,12 +19,12 @@ var Streamer = /** @class */ (function () {
     }
     return Streamer;
 }());
-var Stream = /** @class */ (function () {
-    function Stream(nombre, detalle) {
+var Steam = /** @class */ (function () {
+    function Steam(nombre, detalle) {
         this.nombre = nombre;
         this.detalle = detalle;
     }
-    return Stream;
+    return Steam;
 }());
 // Clase principal que contiene la lógica
 var StreamingService = /** @class */ (function () {
@@ -145,7 +145,7 @@ var StreamingService = /** @class */ (function () {
     return StreamingService;
 }());
 // Uso de la clase StreamingService
-var streamingService = new StreamingService();
+var StreamingService = new StreamingService();
 // Agregar plataformas
 streamingService.agregarPlataforma("Twitch", "Plataforma de streaming en vivo");
 streamingService.agregarPlataforma("YouTube", "Plataforma de videos en línea");

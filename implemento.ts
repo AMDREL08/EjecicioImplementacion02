@@ -10,7 +10,7 @@ class Plataforma {
     constructor(public nombre: string, public detalle: string) {}
   }
   
-  class Stream {
+  class Steam {
     constructor(public nombre: string, public detalle: string) {}
   }
   
@@ -157,7 +157,7 @@ class Plataforma {
   
   // Uso de la clase StreamingService
   
-  const streamingService = new StreamingService();
+  const StreamingService = new StreamingService();
   
   // Agregar plataformas
   streamingService.agregarPlataforma("Twitch", "Plataforma de streaming en vivo");
